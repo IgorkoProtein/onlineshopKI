@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.lang.*;
 import org.apache.log4j.Logger;
 
 public class Product implements Serializable {
@@ -72,6 +73,49 @@ public class Product implements Serializable {
         return new ArrayList<Product>();
     }
 
+    public void setDescription(){
+        Scanner input = new Scanner(System.in);
+        do {
+
+            try {
+                System.out.println("Enter description of product");
+                String description = input.next();
+                if(description.length() <  5 ){
+                    throw new InputExceptoin("Занадто малий опис продукту");
+                }
+                if(description.length() >30){
+                    throw new InputExceptoin("Занадто великий опис ");
+                }
+                System.out.println(description);
+                break;
+            } catch (InputExceptoin inputExceptoin) {
+                System.out.printf(inputExceptoin.getMessage());
+                System.out.printf(String.valueOf(inputExceptoin.getClass()));
+                continue;
+            }
+        } while (true);
+
+    }
+
+
+    public void setDescription2(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter description of product: ");
+        CharSequence cs1 = "1234567890";
+        do {
+            String description = input.next();
+            boolean temp = description.contains(cs1);
+            if (temp == true){
+                System.out.println("Введіть опис без цифр: ");
+                input.nextLine();
+                continue;
+            }
+            else {
+                System.out.printf("Ok");
+                break;}
+        } while (true);
+    }
+
     public void setPrice(){
         Scanner input =  new Scanner(System.in);
         do {
@@ -104,9 +148,14 @@ public class Product implements Serializable {
     public static void main(String[] args) {
         Product product = new Product();
 
-        product.setPrice();
+        //product.setPrice();
+        product.setDescription2();
+
 
     }
+
+
+
 
     @Override
     public String toString() {
