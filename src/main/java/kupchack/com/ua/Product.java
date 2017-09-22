@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.*;
+
 import org.apache.log4j.Logger;
 
 public class Product implements Serializable {
@@ -73,17 +74,17 @@ public class Product implements Serializable {
         return new ArrayList<Product>();
     }
 
-    public void setDescription(){
+    public void setDescription() {
         Scanner input = new Scanner(System.in);
         do {
 
             try {
                 System.out.println("Enter description of product");
                 String description = input.next();
-                if(description.length() <  5 ){
+                if (description.length() < 5) {
                     throw new InputExceptoin("Занадто малий опис продукту");
                 }
-                if(description.length() >30){
+                if (description.length() > 30) {
                     throw new InputExceptoin("Занадто великий опис ");
                 }
                 System.out.println(description);
@@ -98,46 +99,53 @@ public class Product implements Serializable {
     }
 
 
-    public void setDescription2(){
+    public void setDescription2() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter description of product: ");
-        CharSequence cs1 = "1234567890";
+        String description = "";
+        String[] deniedSymbols = {"1", "2", "3"};
+        boolean finishEntering  =true;
+
         do {
-            String description = input.next();
-            boolean temp = description.contains(cs1);
-            if (temp == true){
-                System.out.println("Введіть опис без цифр: ");
-                input.nextLine();
-                continue;
+            System.out.println("Enter description of product: ");
+            description = input.next();
+
+            for (int i = 0; i < deniedSymbols.length; i++) {
+                if (description.contains(deniedSymbols[i])) {
+                    System.out.println("Введіть опис без цифр: ");
+                    finishEntering = true;
+                    break;
+                }
+                finishEntering = false;
             }
-            else {
-                System.out.printf("Ok");
-                break;}
-        } while (true);
+
+        } while (finishEntering);
+
+
+        System.out.println(description);
     }
 
-    public void setPrice(){
-        Scanner input =  new Scanner(System.in);
+    public void setPrice() {
+        Scanner input = new Scanner(System.in);
         do {
             try {
                 System.out.print("Enter price of product: ");
                 double price = input.nextFloat();
-                if (price < 0 || price > 99000){
+                if (price < 0 || price > 99000) {
                     throw new InputExceptoin("Неправильний діапазон введеної цін ");
                 }
 
                 this.price = price;
-                log.info("Встановлена ціна продукту "+ this.itemID + " = " +price );
+                log.info("Встановлена ціна продукту " + this.itemID + " = " + price);
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("Сталася помилка введеня :"+ e.getClass());
-                log.error("Сталася помилка введеня :"+ e.getClass());
+                System.out.println("Сталася помилка введеня :" + e.getClass());
+                log.error("Сталася помилка введеня :" + e.getClass());
                 log.error(e.getStackTrace());
                 input.nextLine();
                 continue;
             } catch (InputExceptoin inputExceptoin) {
                 System.out.println(inputExceptoin.getMessage());
-                log.error("Сталася помилка введеня :"+ inputExceptoin.getMessage());
+                log.error("Сталася помилка введеня :" + inputExceptoin.getMessage());
                 log.error(inputExceptoin.getStackTrace());
                 continue;
             }
@@ -153,8 +161,6 @@ public class Product implements Serializable {
 
 
     }
-
-
 
 
     @Override

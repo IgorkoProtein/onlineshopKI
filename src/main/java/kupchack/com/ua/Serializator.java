@@ -27,11 +27,11 @@ public class Serializator {
             someObject.close();
             someFile.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
         return tempObj;
     }

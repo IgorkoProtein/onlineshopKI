@@ -1,11 +1,15 @@
 package kupchack.com.ua;
 
+import org.apache.log4j.Logger;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductCatalog {
     private static ArrayList<Product> products = Product.createArrayList();
-    private static String pathToFile = "src/main/java/lesson12_GRASP/Data/productCatalog";
+    private static String pathToFile = "src/main/java/kupchack/com/ua/productCatalog";
+    private static final Logger log = Logger.getLogger(ProductCatalog.class);
 
     public static void addProduct(String name, double price) {
         Product product = Product.create();
@@ -62,7 +66,11 @@ public class ProductCatalog {
     }
 
     public static void loadProduct() {
-        products = (ArrayList<Product>) Serializator.loadData(pathToFile);
+            products = (ArrayList<Product>) Serializator.loadData(pathToFile);
+            if (products == null){
+                products = Product.createArrayList();
+            }
+
     }
 
 }
