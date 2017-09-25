@@ -1,4 +1,6 @@
-package kupchack.com.ua;
+package kupchack.com.ua.onlineShop.users;
+
+import org.omg.PortableInterceptor.LOCATION_FORWARD;
 
 import java.time.LocalDate;
 
@@ -31,6 +33,10 @@ public abstract class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setName() {
+        this.name = ReadingData.getData("Enter your name:");
     }
 
     public String getSurname() {

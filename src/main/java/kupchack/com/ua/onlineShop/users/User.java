@@ -1,4 +1,4 @@
-package kupchack.com.ua;
+package kupchack.com.ua.onlineShop.users;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -7,28 +7,32 @@ public class User extends Person{
     private static int nextId = 1;
     private int userId;
     private String password;
-    private String loginStatus;
+    private String login;
+    private String email;
 
 
     public User() {
         super();
         this.password = "-1";
-        this.loginStatus = "-1";
+        this.login = "-1";
+        this.email = "-1";
         setUserId();
     }
 
-    public User(String name, String surname, String password, String loginStatus) {
+    public User(String name, String surname, int userId, String password, String login, String email) {
         super(name, surname);
+        this.userId = userId;
         this.password = password;
-        this.loginStatus = loginStatus;
-        setUserId();
+        this.login = login;
+        this.email = email;
     }
 
-    public User(String name, String surname, LocalDate birthDay, String password, String loginStatus) {
+    public User(String name, String surname, LocalDate birthDay, int userId, String password, String login, String email) {
         super(name, surname, birthDay);
+        this.userId = userId;
         this.password = password;
-        this.loginStatus = loginStatus;
-        setUserId();
+        this.login = login;
+        this.email = email;
     }
 
     public String getPassword() {
@@ -39,12 +43,12 @@ public class User extends Person{
         this.password = password;
     }
 
-    public String getLoginStatus() {
-        return loginStatus;
+    public String getLogin() {
+        return login;
     }
 
-    public void setLoginStatus(String loginStatus) {
-        this.loginStatus = loginStatus;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public int getUserId() {
@@ -53,6 +57,14 @@ public class User extends Person{
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public static void setNextId(int nextId) {
+        User.nextId = nextId;
     }
 
     public void setUserId(){
@@ -75,7 +87,7 @@ public class User extends Person{
                 ", surname="+ super.getSurname()+
                 ", birthday="+ super.getBirthDay()+
                 ", password='" + password + '\'' +
-                ", loginStatus='" + loginStatus + '\'' +
+                ", login='" + login + '\'' +
                 '}';
     }
 }

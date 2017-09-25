@@ -1,40 +1,44 @@
-package kupchack.com.ua;
+package kupchack.com.ua.onlineShop.users;
+
+import kupchack.com.ua.Order;
+import kupchack.com.ua.ShoppingCard;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Customer extends User{
     private String address;
-    private String email;
     private String creditCardInfo;
     private String shoppingInfo;
+    private ArrayList<Order> orders;
     private ArrayList<ShoppingCard> ShopCard;
+
 
 
     public Customer() {
         this.address = "none";
-        this.email = "none";
         this.creditCardInfo = "none";
         this.shoppingInfo = "none";
-        ShopCard = new ArrayList<ShoppingCard>();  // Чому в оголошенні ліста не використовуємо new ?
+        ShopCard = ShoppingCard.createArrayList(); // Чому в оголошенні ліста не використовуємо new ?
+        orders = Order.createArrayList();
     }
 
-    public Customer(String name, String surname, LocalDate birthDay, String password, String loginStatus, String address, String email, String creditCardInfo, String shoppingInfo) {
-        super(name, surname, birthDay, password, loginStatus);
+    public Customer(String name, String surname, LocalDate birthDay,
+                    int userId, String password, String login, String email,
+                    String address, String creditCardInfo, String shoppingInfo) {
+        super(name, surname, birthDay, userId, password, login, email);
         this.address = address;
-        this.email = email;
         this.creditCardInfo = creditCardInfo;
         this.shoppingInfo = shoppingInfo;
-        ShopCard = new ArrayList<ShoppingCard>();
     }
 
-    public Customer(String name, String surname, String password, String loginStatus, String address, String email, String creditCardInfo, String shoppingInfo) {
-        super(name, surname, password, loginStatus);
+    public Customer(String name, String surname,
+                    int userId, String password, String login,
+                    String email, String address, String creditCardInfo, String shoppingInfo) {
+        super(name, surname, userId, password, login, email);
         this.address = address;
-        this.email = email;
         this.creditCardInfo = creditCardInfo;
         this.shoppingInfo = shoppingInfo;
-        ShopCard = new ArrayList<ShoppingCard>();
     }
 
     public String getAddress() {
@@ -43,14 +47,6 @@ public class Customer extends User{
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getCreditCardInfo() {
@@ -68,6 +64,8 @@ public class Customer extends User{
     public void setShoppingInfo(String shoppingInfo) {
         this.shoppingInfo = shoppingInfo;
     }
+
+    public static ArrayList<Customer> createArrayList(){return new ArrayList<>();}
 
 
 }

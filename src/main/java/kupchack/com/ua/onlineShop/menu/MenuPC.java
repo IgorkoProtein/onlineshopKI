@@ -1,10 +1,11 @@
-package kupchack.com.ua;
+package kupchack.com.ua.onlineShop.menu;
+
+import kupchack.com.ua.ProductCatalog;
 
 import java.util.Scanner;
 
 public class MenuPC {
         private static int choose = -1;
-
         public static void main(String[] args) {
             do {
                 ProductCatalog.loadProduct();
