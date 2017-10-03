@@ -1,7 +1,5 @@
 package kupchack.com.ua.onlineShop.users;
 
-import org.omg.PortableInterceptor.LOCATION_FORWARD;
-
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -71,12 +69,13 @@ public abstract class Person {
     public void setSurname() {
         Scanner temp = new Scanner(System.in);
         String[] deniedSymbols = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
-        String surname = temp.next();
+        String surname;
 
         do {
 
             try {
                 System.out.println("Enter your surname");
+                surname = temp.next();
 
                 for (int i = 0; i < deniedSymbols.length; i++) {
                     if (surname.contains(deniedSymbols[i])) {
@@ -97,11 +96,6 @@ public abstract class Person {
         setSurname(surname);
     }
 
-    public void setBirthday() {
-
-
-    }
-
     public int getYear() {
         //Scanner temp = new Scanner(System.in);
         int year = -1;
@@ -110,9 +104,10 @@ public abstract class Person {
                 System.out.println("Enter year");
                 year = ReadingInt.getData();
 
-                if (2018 > year || year < 1918) {
+                if (year > 2018 || year <1918) {
                     throw new InputExceptoin("Ви ввели неіснуючий рік");
                 }
+
                 break;
             } catch (InputExceptoin e) {
                 System.out.println(e.getMessage());
@@ -126,131 +121,112 @@ public abstract class Person {
         return year;
     }
 
-    public int getMounth() {
+    public int getMounth(){
         int mounth = -1;
         do {
             try {
-                System.out.println("Enter year");
+                System.out.println("Enter mounth");
                 mounth = ReadingInt.getData();
 
-                switch (mounth) {
-                    case 1:
-                        getDay1();
-                        break;
-                    case 2:
-                        getDay3();
-                        break;
-                    case 3:
-                        getDay1();
-                        break;
-                    case 4:
-                        getDay2();
-                        break;
-                    case 5:
-                        getDay1();
-                        break;
-                    case 6:
-                        getDay1();
-                        break;
-                    case 7:
-                        getDay2();
-                        break;
-                    case 8:
-                        getDay1();
-                        break;
-                    case 9:
-                        getDay2();
-                        break;
-                    case 10:
-                        getDay1();
-                        break;
-                    case 11:
-                        getDay2();
-                        break;
-                    case 12:
-                        getDay1();
-                        break;
-                    default:
-                        throw new InputExceptoin("Ви ввели неіснуючий місяць");
+                if (mounth > 12 || mounth <= 0) {
+                    throw new InputExceptoin("Ви ввели неіснуючий місяць");
                 }
-            }catch (InputExceptoin inputExceptoin) {
-                inputExceptoin.getMessage();
+                break;
+            } catch (InputExceptoin e) {
+                System.out.println(e.getMessage());
                 continue;
             } catch (InputMismatchException e) {
                 System.out.println("Сталася помилка введеня :" + e.getClass());
                 continue;
             }
-            }while (true) ;
-                return mounth;
+        } while (true);
+
+        return mounth;
+    }
+
+    public int getDay31() {
+        int day = -1;
+        do {
+            try {
+                System.out.println("Enter day");
+                day = ReadingInt.getData();
+
+                if (day > 31 || day < 1) {
+                    throw new InputExceptoin("Ви ввели неіснуючий день");
+                }
+                break;
+            } catch (InputExceptoin e) {
+                System.out.println(e.getMessage());
+                continue;
+            } catch (InputMismatchException e) {
+                System.out.println("Сталася помилка введеня :" + e.getClass());
+                continue;
+            }
+        } while (true);
+
+        return day;
+    }
+
+    public int getDay30() {
+        int day = -1;
+        do {
+            try {
+                System.out.println("Enter day");
+                day = ReadingInt.getData();
+
+                if (day > 30 || day < 1) {
+                    throw new InputExceptoin("Ви ввели неіснуючий день");
+                }
+                break;
+            } catch (InputExceptoin e) {
+                System.out.println(e.getMessage());
+                continue;
+            } catch (InputMismatchException e) {
+                System.out.println("Сталася помилка введеня :" + e.getClass());
+                continue;
+            }
+        } while (true);
+
+        return day;
+    }
+
+    public int getDay28() {
+        int day = -1;
+        do {
+            try {
+                System.out.println("Enter day");
+                day = ReadingInt.getData();
+
+                if (day > 28 || day < 1) {
+                    throw new InputExceptoin("Ви ввели неіснуючий день");
+                }
+                break;
+            } catch (InputExceptoin e) {
+                System.out.println(e.getMessage());
+                continue;
+            } catch (InputMismatchException e) {
+                System.out.println("Сталася помилка введеня :" + e.getClass());
+                continue;
+            }
+        } while (true);
+
+        return day;
+    }
+
+    public void setBirthday() {
+        int year = getYear();
+        int mounth = getMounth();
+        int day = -1;
+
+        if(mounth == 1 || mounth == 3 || mounth == 5 || mounth == 7 || mounth == 8 || mounth == 10 || mounth == 12  ){
+            day = getDay31();
+        }else if (mounth == 4 || mounth == 6 || mounth == 9 || mounth == 11){
+            day = getDay30();
+        }else if(mounth == 2){
+            day = getDay28();
         }
 
-    public int getDay1() {
-        int day = -1;
-        do {
-            try {
-                System.out.println("Enter day");
-                day = ReadingInt.getData();
-
-                if (31 > day || day < 1) {
-                    throw new InputExceptoin("Ви ввели неіснуючий день");
-                }
-                break;
-            } catch (InputExceptoin e) {
-                System.out.println(e.getMessage());
-                continue;
-            } catch (InputMismatchException e) {
-                System.out.println("Сталася помилка введеня :" + e.getClass());
-                continue;
-            }
-        } while (true);
-
-        return day;
-    }
-
-    public int getDay2() {
-        int day = -1;
-        do {
-            try {
-                System.out.println("Enter day");
-                day = ReadingInt.getData();
-
-                if (30 > day || day < 1) {
-                    throw new InputExceptoin("Ви ввели неіснуючий день");
-                }
-                break;
-            } catch (InputExceptoin e) {
-                System.out.println(e.getMessage());
-                continue;
-            } catch (InputMismatchException e) {
-                System.out.println("Сталася помилка введеня :" + e.getClass());
-                continue;
-            }
-        } while (true);
-
-        return day;
-    }
-
-    public int getDay3() {
-        int day = -1;
-        do {
-            try {
-                System.out.println("Enter day");
-                day = ReadingInt.getData();
-
-                if (28 > day || day < 1) {
-                    throw new InputExceptoin("Ви ввели неіснуючий день");
-                }
-                break;
-            } catch (InputExceptoin e) {
-                System.out.println(e.getMessage());
-                continue;
-            } catch (InputMismatchException e) {
-                System.out.println("Сталася помилка введеня :" + e.getClass());
-                continue;
-            }
-        } while (true);
-
-        return day;
+        birthDay = LocalDate.of(year,mounth,day);
     }
 
 

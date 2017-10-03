@@ -15,5 +15,15 @@ public class Autorisation {
     public static void main(String[] args) {
         Customer obj = new Customer();
         obj.setName();
+        obj.setSurname();
+        obj.setBirthday();
+
+        obj.setLogin();
+        obj.setPassword();
+        obj.setEmail();
+
+        System.out.println( obj.toString());
+
+
     }
 }
