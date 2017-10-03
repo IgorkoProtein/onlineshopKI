@@ -1,4 +1,4 @@
-package kupchack.com.ua;
+package kupchack.com.ua.onlineShop.users;
 
 /**
  * Created by Home on 18.09.2017.

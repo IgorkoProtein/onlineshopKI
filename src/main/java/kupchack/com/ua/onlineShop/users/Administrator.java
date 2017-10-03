@@ -24,5 +24,5 @@ public class Administrator extends User {
     }
 
 
-    public static ArrayList<Administrator> createArrayList(){return new ArrayList<>();}
+    public static ArrayList<Administrator> createArrayList(){return new ArrayList<Administrator>();}
 }

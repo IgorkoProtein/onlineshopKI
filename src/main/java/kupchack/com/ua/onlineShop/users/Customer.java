@@ -65,7 +65,7 @@ public class Customer extends User{
         this.shoppingInfo = shoppingInfo;
     }
 
-    public static ArrayList<Customer> createArrayList(){return new ArrayList<>();}
+    public static ArrayList<Customer> createArrayList(){return new ArrayList<Customer>();}
 
 
 }

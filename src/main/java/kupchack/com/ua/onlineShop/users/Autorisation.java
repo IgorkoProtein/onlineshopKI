@@ -11,4 +11,9 @@ public class Autorisation {
         obj.setName("");
 
     }
+
+    public static void main(String[] args) {
+        Customer obj = new Customer();
+        obj.setName();
+    }
 }

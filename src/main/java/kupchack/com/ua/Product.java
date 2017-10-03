@@ -1,5 +1,6 @@
 package kupchack.com.ua;
 
+import kupchack.com.ua.onlineShop.users.InputExceptoin;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -7,8 +8,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.*;
-
-import org.apache.log4j.Logger;
 
 public class Product implements Serializable {
 
@@ -119,7 +118,6 @@ public class Product implements Serializable {
             }
 
         } while (finishEntering);
-
 
         System.out.println(description);
     }
