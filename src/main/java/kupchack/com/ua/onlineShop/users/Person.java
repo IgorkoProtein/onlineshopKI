@@ -229,6 +229,18 @@ public abstract class Person {
         birthDay = LocalDate.of(year,mounth,day);
     }
 
+    public void setBirthday(boolean result) {
+       int[] mounths = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+       int year = 0, mounth = 0,day = 0;
+
+       if (day == mounths[mounth-1]){
+           birthDay = LocalDate.of(year,mounth,day);
+       }
+
+
+    }
+
 
     public String getSurname() {
         return surname;

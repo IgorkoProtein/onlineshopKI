@@ -65,6 +65,10 @@ public class Customer extends User{
         this.shoppingInfo = shoppingInfo;
     }
 
+    public void setCreditCardInfo(){
+
+    }
+
     public static ArrayList<Customer> createArrayList(){return new ArrayList<Customer>();}
 
 
