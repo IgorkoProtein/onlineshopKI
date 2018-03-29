@@ -1,11 +1,11 @@
-package kupchack.com.ua.onlineShop.users;
+package kupchack.com.ua.Lesson42_SimpleDAO.DAO.beans;
 
-import java.time.LocalDate;
-import java.time.Period;
+import kupchack.com.ua.Lesson42_SimpleDAO.DAO.basic.Identificator;
+import kupchack.com.ua.onlineShop.users.InputExceptoin;
+
 import java.util.Scanner;
 
-public class User extends Person{
-    private static int nextId = 1;
+public class User implements Identificator<Integer>{
     private int userId;
     private String password;
     private String login;
@@ -16,27 +16,33 @@ public class User extends Person{
     }
 
     public User() {
-        super();
         this.password = "-1";
         this.login = "-1";
         this.email = "-1";
-        setUserId();
+        this.userId = -1;
     }
 
-    public User(String name, String surname, int userId, String password, String login, String email) {
-        super(name, surname);
+    public User(int userId, String password, String login, String email) {
         this.userId = userId;
         this.password = password;
         this.login = login;
         this.email = email;
     }
 
-    public User(String name, String surname, LocalDate birthDay, int userId, String password, String login, String email) {
-        super(name, surname, birthDay);
-        this.userId = userId;
+    public User(String login, String password,  String email) {
         this.password = password;
         this.login = login;
         this.email = email;
+        this.userId = -1;
+
+    }
+
+    public Integer getId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {
@@ -55,38 +61,11 @@ public class User extends Person{
         this.login = login;
     }
 
-    public int getUserId() {
-        return userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getId() {
-        int id = ReadingData.getIntData("Enter users id -> ");
-        return id;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        User.nextId = nextId;
-    }
-
-    public void setUserId(){
-        userId = nextId;
-        nextId++;
-    }
-
-    public int getAge() {
-
-        LocalDate now = LocalDate.now();
-        Period age = Period.between(getBirthDay(),now);
-        return Integer.getInteger(age.toString());
-    }
 
     public void setPassword(){
         String password = "0";
@@ -157,14 +136,6 @@ public class User extends Person{
 
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", name="+ super.getName()+
-                ", surname="+ super.getSurname()+
-                ", birthday="+ super.getBirthDay()+
-                ", password='" + password + '\'' +
-                ", login='" + login + '\'' +
-                ", eMail='" + email + '\'' +
-                '}';
+        return "User{" + "userId=" + userId + ", password='" + password + '\'' + ", login='" + login + '\'' + ", email='" + email + '\'' + '}';
     }
 }
